@@ -35,4 +35,4 @@ $ELEXIS_INSTALLER -nosplash -application org.eclipse.oomph.console.application -
   -Doomph.installer.verbose=true 2>&1 | tee $SCRIPTPATH/$0.log
 IDE=`find $INST_ROOT -name eclipse`
 echo SETUPS were in $SETUPS IDE is $IDE
-echo run it via: $IDE -data $INST_ROOT/workspace -clean
+echo run it via: $IDE -data $INST_ROOT/workspace -clean | tee --append $SCRIPTPATH/$0.log

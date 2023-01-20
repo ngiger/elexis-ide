@@ -5,9 +5,13 @@ a fully automated setup via the console analog to https://github.com/elexis/elex
 
 # What works
 
+* call `./setup_elexis.sh` in a checkout of the repository. This will build and eclipse which
+* can be tested via `/tmp/elexis-ide/ide/elexis.ide2/eclipse -data /tmp/elexis-ide/workspace -clean`
 * installing desired eclipse release train (e.g. 22-09) works
 * Adding needed feature like targetplatform
 * Setting heap size via eclipse.ini to 2048 works
+
+Tested under Debian bullseye and NixOS 22.11
 
 # Problems
 
