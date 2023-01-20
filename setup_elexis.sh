@@ -16,7 +16,7 @@ fi
 
 SETUPS=$SCRIPTPATH/elexis/
 echo PWD ist $PWD
-INST_ROOT=/tmp/elexis_ide
+INST_ROOT=/tmp/elexis_ide2
 rm -rf $INST_ROOT; mkdir -p $INST_ROOT
 echo PWD ist $PWD
 ls -l $ELEXIS_INSTALLER $SETUPS
@@ -30,16 +30,17 @@ time $ELEXIS_INSTALLER -nosplash -application org.eclipse.oomph.console.applicat
   -Doomph.redirection.setups="index:/->$SETUPS/" \
   -Doomph.redirection.setupsDir="index:/->$SETUPS/" \
   -Doomph.installation.location="$INST_ROOT/ide" \
-  -Doomph.product.id="epp.package.java" \
+  -Doomph.product.id="eclipse.ide4elexis" \
   -Doomph.project.id="elexis.ide" \
   -Doomph.workspace.location="$INST_ROOT/workspace" \
-  -Doomph.installation.id="elexis.ide" \
+  -Doomph.installation.id="elexis.ide2" \
   -Dsetup.p2.agent="$HOME/.p2" \
-  -Doomph.installer.verbose=true
+  -Doomph.setup.offline=false \
+  -Doomph.installer.verbose=true 2>&1 | tee  $0.log
 du -shx $INST_ROOT
 IDE=`find $INST_ROOT -name eclipse`
 echo SETUPS were in $SETUPS IDE is $IDE
-export START=" $IDE -data $INST_ROOT/workspace"
+export START=" $IDE -data $INST_ROOT/workspace -clean"
 echo $START
 $START
 exit

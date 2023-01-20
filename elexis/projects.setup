@@ -71,7 +71,7 @@
           value="ignore"/>
     </setupTask>
   </setupTask>
-  <!--setupTask
+  <setupTask
       xsi:type="setup:CompoundTask"
       name="Common">
     <setupTask
@@ -110,8 +110,8 @@
 
       </content>
     </setupTask>
-  </setupTask-->
-  <!--setupTask
+  </setupTask>
+  <setupTask
       xsi:type="git:GitCloneTask"
       id="core.git.clone"
       remoteURI="elexis/elexis-3-core">
@@ -131,8 +131,8 @@
       </detail>
     </annotation>
     <description>Elexis 3 Core</description>
-  </setupTask-->
-  <!--setupTask
+  </setupTask>
+  <setupTask
       xsi:type="git:GitCloneTask"
       id="base.git.clone"
       remoteURI="elexis/elexis-3-base"
@@ -153,8 +153,8 @@
       </detail>
     </annotation>
     <description>Elexis 3 Base</description>
-  </setupTask-->
-  <!--setupTask
+  </setupTask>
+  <setupTask
       xsi:type="git:GitCloneTask"
       id="server.git.clone"
       remoteURI="elexis/elexis-server">
@@ -174,7 +174,7 @@
       </detail>
     </annotation>
     <description>Elexis Server</description>
-  </setupTask-->
+  </setupTask>
   <stream name="master">
     <setupTask
         xsi:type="setup:CompoundTask"

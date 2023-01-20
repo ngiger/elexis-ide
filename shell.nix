@@ -13,10 +13,31 @@
 with import <nixpkgs> {};
 pkgs.mkShell {
   NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-    pkgs.stdenv.cc.cc
-    pkgs.openssl
-    # ...
-  ];
+      zlib
+      dbus
+      atk # libatk-1.0.so
+      cairo # needed to run Elexis h2
+      at-spi2-core
+      git
+      glib
+      glib-networking
+      gnulib
+      gsettings-desktop-schemas
+      gtk3
+      nss_latest nspr libdrm xorg.libXdamage mesa alsa-lib
+      swt
+      gvfs
+      jdk17
+      librsvg
+      libsecret
+      libzip
+      openssl
+      stdenv
+      stdenv.cc.cc
+      unzip
+      webkitgtk
+      xorg.libXtst
+    ];
   NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
   buildInputs = [ pkgs.maven ];
 }
