@@ -1,41 +1,8 @@
 { pkgs, inputs, ... }:
-let
-  x = "234";
-  # NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
-  /*
-  NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-      pkgs.zlib
-      pkgs.dbus
-      pkgs.atk # libatk-1.0.so
-      pkgs.cairo # needed to run Elexis h2
-      pkgs.at-spi2-core
-      pkgs.git
-      pkgs.glib
-      pkgs.glib-networking
-      pkgs.gnulib
-      pkgs.gsettings-desktop-schemas
-      pkgs.gtk3
-      pkgs.nss_latest
-      pkgs.nspr
-      pkgs.libdrm
-      pkgs.xorg.libXdamage
-      pkgs.mesa
-      pkgs.alsa-lib
-      pkgs.swt
-      pkgs.gvfs
-      pkgs.jdk17
-      pkgs.librsvg
-      pkgs.libsecret
-      pkgs.libzip
-      pkgs.openssl
-      pkgs.stdenv
-      pkgs.stdenv.cc.cc
-      pkgs.unzip
-      pkgs.webkitgtk
-      pkgs.xorg.libXtst
-    ];
-    */
-in {
+# https://www.azul.com/products/azul-support-roadmap/
+# elexis-master needs openjdk17
+# I found no elegant solution to put the long list of packages into a variable.
+{
   languages.java.enable = true;
   packages = [
     pkgs.openjdk
@@ -76,7 +43,6 @@ in {
   enterShell = ''
     echo 'Making sure the basics for native compilation are available:'
     mvn --version
-    echo x ist $x
     export NIX_LD="${pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"}";
     export NIX_LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [ pkgs.zlib
       pkgs.dbus
