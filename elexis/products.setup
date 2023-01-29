@@ -36,11 +36,11 @@
           source="http://www.eclipse.org/oomph/setup/BrandingInfo">
         <detail
             key="siteURI">
-          <value>https://www.eclipse.org/downloads/packages/release/${eclipse.train}/r/eclipse-ide-rcp-and-rap-developers</value>
+          <value>https://www.eclipse.org/downloads/packages/release/2022-09/r/eclipse-ide-rcp-and-rap-developers</value>
         </detail>
         <detail
             key="shortcut">
-          <value>Eclipse IDE ${eclipse.train} for Elexis Developers with all needed features</value>
+          <value>Eclipse IDE 2022-09 for Elexis Developers with all needed features</value>
         </detail>
       </annotation>
 	  <setupTask
@@ -50,13 +50,31 @@
             name="epp.package.rcp"
             versionRange="0.0.0"
             filter="(|(&amp;(osgi.arch=aarch64)(osgi.os=linux)(osgi.ws=gtk))(&amp;(osgi.arch=aarch64)(osgi.os=macosx)(osgi.ws=cocoa))(&amp;(osgi.arch=x86_64)(osgi.os=linux)(osgi.ws=gtk))(&amp;(osgi.arch=x86_64)(osgi.os=macosx)(osgi.ws=cocoa))(&amp;(osgi.arch=x86_64)(osgi.os=win32)(osgi.ws=win32)))"/>
-
+        <!--requirement
+		  name="epp.package.standard" /-->
+		<!-- I would like to install the standard oomph 
+		org.eclipse.oomph.projectconfig.feature.group
+		org.eclipse.oomph.preferences.feature.group
+		-->
+        <requirement
+		  name="org.eclipse.oomph.setup.sdk.feature.group" />
+        <requirement
+		  name="org.eclipse.oomph.projectconfig.feature.group" />
+        <requirement
+		  name="org.eclipse.oomph.preferences.feature.group" />
+		
         <requirement
             name="org.eclipse.platform.feature.group"
             versionRange="0.0.0"/>
         <requirement
             name="org.eclipse.rcp.feature.group"
             versionRange="0.0.0"/>
+	<requirement
+	  name="org.eclipse.rcptt.platform.feature.group"/>
+	<requirement
+	  name="org.brainwy.liclipsetext.feature.feature.group"/>
+	<requirement
+	  name="org.brainwy.liclipsetext.feature.source.feature.group"/>
     <requirement
         name="org.eclipse.mylyn.github.feature.feature.group"/>
     <requirement
@@ -77,7 +95,7 @@
         <repository
             url="https://raw.githubusercontent.com/essiembre/eclipse-rbe/master/eclipse-rbe-update-site/"/>
         <repository
-            url="https://download.eclipse.org/technology/epp/packages/${eclipse.train}"/>
+            url="https://download.eclipse.org/technology/epp/packages/2022-09"/>
     <repository
 	  url="https://download.eclipse.org/technology/m2e/releases/2.1.2/"/> 
     <repository 
@@ -90,10 +108,12 @@
 	  url="https://download.eclipse.org/windowbuilder/1.11.0/" />
     <repository
         url="https://download.medelexis.ch/public/at.medbits.tools.launchtopom/"/>
+	<repository
+	  url="https://www.liclipse.com/text/updates/" />
 	
 		<!-- for unknown reasons this MUST be the LAST one -->
         <repository
-            url="https://download.eclipse.org/releases/${eclipse.train}">
+            url="https://download.eclipse.org/releases/2022-09">
          <annotation
              source="http://www.eclipse.org/oomph/setup/ReleaseTrain"/>
         </repository>
