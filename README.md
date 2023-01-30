@@ -34,15 +34,15 @@ was split into the two files [products.setup](./blob/main/elexis/products.setup)
 * call this script
 * Select menu File..Import, select Oomph..Project from Catalog, then press Next.
   Select the projects under **Elexis Projekte** you want to install.
-  I usually deactive the first Manual Taks "P2 Director" as it will try to update all (already installed) features
+  I usually deactive the first Manual Taks **P2 Director** as it will try to update all (already installed) features
 * Nota bene: The values for oomph are stored under `~/.eclipse/org.eclipse.oomph.setup/setups/user.setup`
 
 Tested under Debian bullseye and NixOS 22.11
 * The generate eclipse `/opt/ide/elexis-2022-12/eclipse` is small (32M), as most code is stored under `$HOME/.eclipse`
 
-# NixOS: add ons
+# NixOS: added flakes for RCPTT and Elexis-IDE
 
 This project defines two derivations elexis-ide and rcppt. Install them using flake like this
 
-* `nix profile install github:ngiger/elexis-ide --impure` # default is elexis-ide`
-* `nix profile install github:ngiger/elexis-ide#rcptt`
+* `nix profile install github:ngiger/elexis-ide --impure` # default is elexis-ide
+* `nix profile install github:ngiger/elexis-ide#rcptt` # installs RCPTT
