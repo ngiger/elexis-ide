@@ -66,5 +66,5 @@ $ELEXIS_INSTALLER -nosplash  -shared="$INST_ROOT/p2_shared"  -application org.ec
 IDE=$(find "$INST_ROOT" -type f -name eclipse)
 echo "SETUPS were in $SETUPS IDE is $IDE"
 echo "run it via: $IDE -data $WORKSPACE -clean | tee --append $0.log"
-$IDE -data $WORKSPACE -clean
+"$IDE" -data "$WORKSPACE" -clean
 exit 0
