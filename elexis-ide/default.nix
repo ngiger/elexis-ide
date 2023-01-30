@@ -1,17 +1,7 @@
-{
-  stdenv,
-  writeShellApplication,
-  pkgs,
-  fetchFromGitHub,
-  bundler,
-  bundlerApp,
-  bundlerEnv,
-  bundlerUpdateScript,
-  system,
-  callPackage,
-}: let
+{ pkgs, lib, stdenv, makeDesktopItem, makeWrapper, ... }:
+
+let 
   neededPackages = [
-    pkgs.busybox # to call readlink in bash shell
     pkgs.openjdk
     pkgs.wrapGAppsHook
     pkgs.dbus
@@ -43,7 +33,6 @@
     pkgs.webkitgtk
     pkgs.xorg.libXtst
   ];
-  
   rcp_icon =  builtins.path {
     path = ./icon.xpm;
     name = "rcp_icon.xpom";
@@ -52,7 +41,6 @@
       export NIX_LD="${pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"}";
       export NIX_LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath neededPackages}"
   '';
-  
   mainContent = (builtins.readFile ../setup_elexis.sh);
   shellScript = pkgs.writeShellApplication {
     name = "startElexisIde";
@@ -62,13 +50,39 @@
     ${mainContent}
     ''; # this works, too! 
   };
-in  
-  pkgs.makeDesktopItem {
+  desktopItem = makeDesktopItem {
     name = "Elexis-IDE";
     exec = "${shellScript}/bin/startElexisIde";
     icon = rcp_icon;
-    comment = "Start (or download) Elexis-IDE 2022-12";
-    desktopName = "Elexis-IDE";
-    genericName = "Elexis-IDE 2022";
-    categories = ["Development" "IDE" "Java"];
-  }
+    comment = "Integrated Development Environment";
+    desktopName = "Eclipse IDE for Elexis";
+    genericName = "Integrated Development Environment";
+    categories = [ "Development" ];
+  };
+  
+in stdenv.mkDerivation {
+  src = ./. ;
+  name = "niklaus";
+#  __impure = true; # marks this derivation as impure
+  buildPhase = ''
+  set -o verbose
+   mkdir -p  $out/bin
+   cp -v ${shellScript}/bin/* $out/bin/
+  mkdir -p $out/share/applications
+  cp ${desktopItem}/share/applications/* $out/share/applications
+   ls -lR $out
+  '';
+  installPhase = ''
+    echo Dummy installPhase
+  '';
+  nativeBuildInputs = [ makeWrapper ];
+  buildInputs = neededPackages;
+  desktopItem = desktopItem;
+  meta = {
+    homepage = "https://www.eclipse.org/";
+    description = "Elexis-IDE";
+    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
+    platforms = [ "x86_64-linux" ];
+  };
+
+}

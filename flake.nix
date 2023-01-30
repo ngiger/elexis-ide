@@ -10,6 +10,7 @@
       forAllSystems = f: builtins.listToAttrs (map (name: { inherit name; value = f name; }) systems);
     in
     {
+      programs.nix-ld.enable = true;
       packages = forAllSystems
         (system:
           let
