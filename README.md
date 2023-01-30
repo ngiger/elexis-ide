@@ -12,7 +12,7 @@ a fully automated setup via the console analog to [Elexis.setup](https://github.
 * The URL for the git clone are set to https://github.com/elexis/
 
 
-As long as the eclipse-oomph-console does not support a workaroun for the inducedChoices (which define the
+As long as the eclipse-oomph-console does not support a workaround for the inducedChoices (which define the
 checkout for the 3 elexis-repositories, I prefer to use the normal eclipse-oomp installer. But to work
 under NixOS this project is handy to be able to install RCPTT and an Eclipse RCP/RAP with all features
 needed to develop for Elexis.
@@ -33,16 +33,16 @@ was split into the two files [products.setup](./blob/main/elexis/products.setup)
   At the end it will say something like `run it via: /opt/ide/elexis-2022-12/eclipse/eclipse -data /opt/workspaces/elexis-2022-12 -clean`
 * call this script
 * Select menu File..Import, select Oomph..Project from Catalog, then press Next.
-  Select the projects under "Elexis Projekte" you want to install.
+  Select the projects under **Elexis Projekte** you want to install.
   I usually deactive the first Manual Taks "P2 Director" as it will try to update all (already installed) features
-* Nota bene: The values are stored under rm `~/.eclipse/org.eclipse.oomph.setup/setups/user.setup`
+* Nota bene: The values for oomph are stored under `~/.eclipse/org.eclipse.oomph.setup/setups/user.setup`
 
 Tested under Debian bullseye and NixOS 22.11
-* The generate eclipse `/opt/ide/elexis-2022-12/eclipse` is small (32M), as most code is stored under $HOME/.eclipse
+* The generate eclipse `/opt/ide/elexis-2022-12/eclipse` is small (32M), as most code is stored under `$HOME/.eclipse`
 
 # NixOS: add ons
 
 This project defines two derivations elexis-ide and rcppt. Install them using flake like this
 
 * `nix profile install github:ngiger/elexis-ide --impure` # default is elexis-ide`
-* `nix profile install github:ngiger/elexis-ide#rcptt
+* `nix profile install github:ngiger/elexis-ide#rcptt`
