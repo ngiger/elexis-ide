@@ -118,6 +118,7 @@
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
+      label="Elexis Core"
       id="core.git.clone"
       remoteURI="https://github.com/elexis/elexis-3-core.git"
       pushURI="https://github.com/elexis/elexis-3-core.git">
@@ -126,6 +127,7 @@
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
+      label="Elexis Base features"
       id="base.git.clone"
       remoteURI="https://github.com/elexis/elexis-3-base.git"
       pushURI="https://github.com/elexis/elexis-3-base.git">
@@ -134,6 +136,7 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="server.git.clone"
+      label="Elexis Server application"
       remoteURI="https://github.com/elexis/elexis-server.git"
       pushURI="https://github.com/elexis/elexis-server.git">
     <description>Elexis Server</description>
@@ -214,7 +217,7 @@
       id="elexis-target.ide.target"
       name="Elexis Target IDE 2022-09-java17"/>
   <project name="Medelexis"
-      label="">
+      label="Medelexis 3 features">
     <setupTask
         xsi:type="git:GitCloneTask"
         id="medelexis.git.clone"
@@ -238,7 +241,7 @@
     </setupTask>
     <project
         name="Application"
-        label="">
+        label="Medelexis 3 Application">
       <setupTask
           xsi:type="git:GitCloneTask"
           id="medelexis.application.git.clone"

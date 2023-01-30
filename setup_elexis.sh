@@ -16,7 +16,7 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 # Each of them can be overridden by the environment variable of the same name
 export INST_ROOT="${INST_ROOT:-/opt/ide/elexis-2022-12}"
 export GIT_ROOT="${GIT_ROOT:-$INST_ROOT/git}"
-export WORKSPACE="${WORKSPACE:-/opt/workspaces/elexis-2022-12}"
+export WORKSPACE="${WORKSPACE:-$INST_ROOT/workspace}"
 export USER_HOME="${USER_HOME:-$HOME/}"
 export P2_POOL="${P2_POOL:-$HOME/.eclipse}"
 export SETUPS="${SETUPS:-${SCRIPTPATH}/elexis-ide/}"
@@ -27,8 +27,8 @@ echo "Eclipse will be found under ${INST_ROOT}/elexis/eclipse, repos under ${GIT
 
 if [ "install" == "$1" ]; then
     echo "Passed install on the command line. (Re-)installing it"
-    if test -d "$WORKSPACE"; then echo Removing "$WORKSPACE"; rm -rf "$WORKSPACE"; fi
-    if test -d "$INST_ROOT"; then echo Removing "$INST_ROOT"; rm -rf "$INST_ROOT"; fi
+    if test -d "$WORKSPACE"; then echo Removing workspace "$WORKSPACE"; rm -rf "$WORKSPACE"; fi
+    if test -d "$INST_ROOT"; then echo Removing installed eclipse "$INST_ROOT/eclipse"; rm -rf "$INST_ROOT/eclipse"; fi
 fi
 if file -d "$INST_ROOT" ; then
   echo IDE not found, building it
