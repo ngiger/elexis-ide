@@ -8,7 +8,7 @@ set -e
 if test -f /etc/NIXOS; then
     SCRIPT=${BASH_SOURCE:-$0}
 else
-    SCRIPT=$(readlink -f $0)i
+    SCRIPT=$(readlink -f "$0")i
 fi
 SCRIPTPATH=$(dirname "$SCRIPT")
 
