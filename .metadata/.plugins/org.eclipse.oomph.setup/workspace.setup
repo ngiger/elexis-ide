@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Workspace
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    name="workspace">
+  <stream href="index:/org.eclipse.setup#//@projectCatalogs[name='Elexis%20Projekte']/@projects[name='elexis.ide']/@streams[name='master']"/>
+</setup:Workspace>

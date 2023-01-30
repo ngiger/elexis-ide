@@ -45,9 +45,8 @@ $ELEXIS_INSTALLER -nosplash  -shared="$INST_ROOT/p2_shared"  -application org.ec
   -Dsetup.p2.agent="$P2_POOL" \
   -Duser.home="$USER_HOME" \
   -Doomph.setup.offline=false \
-  -Dgithub.remoteURIs="git@github.com:elexis"  \
   -Dgit.container.root="$GIT_ROOT" \
-  -Doomph.installer.verbose=true 2>&1 | tee $0.log/o
+  -Doomph.installer.verbose=true 2>&1 | tee $0.log
 IDE=`find $INST_ROOT -type f -name eclipse`
 echo eins
 echo SETUPS were in $SETUPS IDE is $IDE
