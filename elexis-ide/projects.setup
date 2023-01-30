@@ -10,7 +10,6 @@
     xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0"
     xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
-    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
 	xmlns:workbench_1.0="http://www.eclipse.org/oomph/setup/workbench/1.0"
     xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
@@ -91,11 +90,11 @@
         vm="true">
       <description>Set the heap space needed to work with the projects of ${scope.project.label}</description>
     </setupTask>
-    <setupTask
+    <!-- setupTask Not done, would add a restart of Eclipse
         xsi:type="setup:EclipseIniTask"
         option="-Doomph.redirection.elexissetup"
         value="=https://raw.githubusercontent.com/elexis/elexis-3-core/master/ch.elexis.sdk/Elexis.setup->${core.git.clone.location|uri}/ch.elexis.sdk/Elexis.setup"
-        vm="true"/>
+        vm="true"/-->
     <setupTask
         xsi:type="setup:ResourceCreationTask"
         excludedTriggers="STARTUP MANUAL"
@@ -120,65 +119,23 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="core.git.clone"
+      remoteURI="https://github.com/elexis/elexis-3-core.git"
+      pushURI="https://github.com/elexis/elexis-3-core.git">
       remoteURI="elexis/elexis-3-core">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>github.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>${scope.project.label} core Github repository</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
     <description>Elexis 3 Core</description>
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
       id="base.git.clone"
-      remoteURI="elexis/elexis-3-base"
-      pushURI="">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>github.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>${scope.project.label} base Github repository</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
+      remoteURI="https://github.com/elexis/elexis-3-base.git"
+      pushURI="https://github.com/elexis/elexis-3-base.git">
     <description>Elexis 3 Base</description>
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
       id="server.git.clone"
-      remoteURI="elexis/elexis-server">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>github.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>${scope.project.label} server Github repository</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
+      remoteURI="https://github.com/elexis/elexis-server.git"
+      pushURI="https://github.com/elexis/elexis-server.git">
     <description>Elexis Server</description>
   </setupTask>
   <setupTask

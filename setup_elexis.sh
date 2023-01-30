@@ -2,10 +2,14 @@
 # Copyright (c) 2023 by Niklaus Giger <niklaus.giger@member.fsf.org>
 set -o errexit
 set -o pipefail
-set -o verbose
+# set -o verbose
 set -e
 
-SCRIPT=${BASH_SOURCE:-$0}
+if test -f /etc/NIXOS; then
+    SCRIPT=${BASH_SOURCE:-$0}
+else
+    SCRIPT=$(readlink -f $0)i
+fi
 SCRIPTPATH=$(dirname "$SCRIPT")
 
 # Adapt the following variables to your needs
@@ -20,16 +24,20 @@ export ELEXIS_INSTALLER="${ELEXIS_INSTALLER:-${SCRIPTPATH}/eclipse-installer/ecl
 
 echo "Setup into ${ELEXIS_INSTALLER}. Workspace will be ${WORKSPACE} using setups from ${SETUPS}"
 echo "Eclipse will be found under ${INST_ROOT}/elexis/eclipse, repos under ${GIT_ROOT}"
-IDE=$(find "$INST_ROOT" -type f -name eclipse)
-if [ -z "$IDE" ]; then
+
+if [ "install" == "$1" ]; then
+    echo "Passed install on the command line. (Re-)installing it"
+    if test -d "$WORKSPACE"; then echo Removing "$WORKSPACE"; rm -rf "$WORKSPACE"; fi
+    if test -d "$INST_ROOT"; then echo Removing "$INST_ROOT"; rm -rf "$INST_ROOT"; fi
+fi
+if file -d "$INST_ROOT" ; then
   echo IDE not found, building it
 else
-  echo "$IDE is $(ls -l "$IDE")"
-  echo "running it via: ${INST_ROOT}/eclipse/eclipse -data $WORKSPACE -clean"
-  "${INST_ROOT}/eclipse/eclipse" -data "$WORKSPACE" -clean
-  exit 0
+    echo found "$INST_ROOT" INST_ROOT
+    echo "running it via: ${INST_ROOT}/eclipse/eclipse -data $WORKSPACE -clean"
+    "${INST_ROOT}/eclipse/eclipse" -data "$WORKSPACE" -clean
+    exit 0
 fi
-
 # cache for downloaded jar is usually under ~/.eclipse. See https://www.eclipse.org/forums/index.php/t/681941/
 #   -Doomph.installation.id="elexis" \
 
@@ -58,4 +66,5 @@ $ELEXIS_INSTALLER -nosplash  -shared="$INST_ROOT/p2_shared"  -application org.ec
 IDE=$(find "$INST_ROOT" -type f -name eclipse)
 echo "SETUPS were in $SETUPS IDE is $IDE"
 echo "run it via: $IDE -data $WORKSPACE -clean | tee --append $0.log"
+$IDE -data $WORKSPACE -clean
 exit 0
