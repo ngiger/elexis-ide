@@ -23,10 +23,8 @@
           in
           {
             default = pkgs.callPackage ./elexis-ide {};
-            elexis-ide-script = pkgs.callPackage ./elexis-ide {};
-            elexis-ide2 = pkgs.callPackage ./elexis-ide/elexis-ide2.nix {};
-            yus = pkgs.callPackage ./elexis-ide/yus.nix {};
-            rcptt = pkgs.callPackage ./elexis-ide/rcptt.nix {};
+            elexis-ide = pkgs.callPackage ./elexis-ide {};
+            rcptt = pkgs.callPackage ./rcptt {};
           });
       devShells = forAllSystems
         (system:
