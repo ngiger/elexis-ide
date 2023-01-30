@@ -2,7 +2,8 @@
 # https://www.azul.com/products/azul-support-roadmap/
 # elexis-master needs openjdk17
 # I found no elegant solution to put the long list of packages into a variable.
-{
+let myPackages = (import ./packungen.nix);
+in {
   languages.java.enable = true;
   packages = [
     pkgs.openjdk
@@ -39,12 +40,14 @@
   pre-commit.hooks.shellcheck.enable = true;
 
 #  environment.NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+  env.NIX_LD="${pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"}";
 
   enterShell = ''
     echo 'Making sure the basics for native compilation are available:'
     mvn --version
-    export NIX_LD="${pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"}";
-    export NIX_LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [ pkgs.zlib
+    export NIX_LD_LIBRARY_PATH22="${myPackages}"
+    export NIX_LD_LIBRARY_PATH31="${pkgs.lib.makeLibraryPath [ pkgs.zlib pkgs.dbus]}"
+    export NIX_LD_LIBRARY_PATH33="${pkgs.lib.makeLibraryPath [ pkgs.zlib
       pkgs.dbus
       pkgs.atk # libatk-1.0.so
       pkgs.cairo # needed to run Elexis h2
