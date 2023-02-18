@@ -26,6 +26,7 @@
             default = pkgs.callPackage ./elexis-ide {};
             elexis-ide = pkgs.callPackage ./elexis-ide {};
             rcptt = pkgs.callPackage ./rcptt {};
+            elexis-3_9 = pkgs.callPackage ./elexis-3.9 {};
           });
       devShells = forAllSystems
         (system:
