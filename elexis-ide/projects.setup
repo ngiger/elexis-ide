@@ -81,8 +81,8 @@
       name="Common">
     <setupTask
         xsi:type="jdt:JRETask"
-        version="JavaSE-17"
-        location="${jre.location-17}"/>
+        version="JavaSE-21"
+        location="${jre.location-21}"/>
     <setupTask
         xsi:type="setup:EclipseIniTask"
         option="-Xmx"
@@ -215,7 +215,7 @@
   <setupTask
       xsi:type="pde:TargetPlatformTask"
       id="elexis-target.ide.target"
-      name="Elexis Target IDE 2022-09-java17"/>
+      name="Elexis Target IDE 2025-03-java21"/>
   <project name="Medelexis"
       label="Medelexis 3 features">
     <setupTask

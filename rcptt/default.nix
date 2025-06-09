@@ -9,9 +9,9 @@
   glib,
   glib-networking,
   gsettings-desktop-schemas,
-  gtk3,
-  openjdk11,
-  openjdk17,
+  gtk4,
+  jdk11,
+  jdk21,
   libsecret,
   makeDesktopItem,
   makeWrapper,
@@ -22,16 +22,16 @@
   alsa-lib, # for chromium
   # Caused by: org.eclipse.swt.SWTException: To run Chromium on Wayland, set env var GDK_BACKEND=x11 or call ChromiumBrowser.earlyInit() before creating Display
   unzip,
-  webkitgtk,
+  webkitgtk_4_0,
   xorg,
   zlib,
 }:
 stdenv.mkDerivation rec {
   pname = "rcptt";
-  version = "2.5.3";
+  version = "2.5.5";
   src = fetchzip {
     url = "https://download.eclipse.org/rcptt/release/${version}/ide/rcptt.ide-${version}-linux.gtk.x86_64.zip";
-    sha256 = "KofgdIHCmi0AeF7oQjp+kvkvuPX6+D7o2Z9U35qwJLA=";
+    sha256 = "sha256-SttZKFg8XQqr+7nZo0tPx6VoRASg5GWyZeO07EsgrlI=";
   };
 
   buildInputs = with xorg; [
@@ -68,11 +68,10 @@ stdenv.mkDerivation rec {
       libX11
       libXrender
       zlib
-      openjdk11
-      openjdk17
-      gtk3
+      jdk21
+      gtk4
       glib-networking
-      webkitgtk
+      webkitgtk_4_0
       nss
       nspr
       libdrm
@@ -82,10 +81,10 @@ stdenv.mkDerivation rec {
     ]} $out/rcptt
     productId=${pname}
     productVersion=${version}
-    export gtk3_version=`echo ${gtk3}  | cut -d '-' -f 3`
+    export gtk4_version=`echo ${gtk4}  | cut -d '-' -f 3`
     makeWrapper $out/rcptt $out/bin/rcptt \
-      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [glib gtk3 libX11 libXext libXi libXrender libXtst libsecret webkitgtk zlib openjdk11 openjdk17]} \
-      --prefix XDG_DATA_DIRS : "$XDG_DATA_DIRS:${gtk3}/share/gsettings-schemas/gtk+3-$gtk3_version" \
+      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [glib gtk4 libX11 libXext libXi libXrender libXtst libsecret webkitgtk_4_0 zlib jdk11 jdk21]} \
+      --prefix XDG_DATA_DIRS : "$XDG_DATA_DIRS:${gtk4}/share/gsettings-schemas/gtk+4-$gtk4_version" \
       --prefix NO_AT_BRIDGE : 1 \
       --prefix GDK_BACKEND : x11 \
       --prefix GIO_EXTRA_MODULES : "${glib-networking}/lib/gio/modules" \

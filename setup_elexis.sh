@@ -14,7 +14,7 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 
 # Adapt the following variables to your needs
 # Each of them can be overridden by the environment variable of the same name
-export INST_ROOT="${INST_ROOT:-/opt/ide/elexis-2022-12}"
+export INST_ROOT="${INST_ROOT:-/opt/ide/elexis-2025-03}"
 export GIT_ROOT="${GIT_ROOT:-$INST_ROOT/git}"
 export WORKSPACE="${WORKSPACE:-$INST_ROOT/workspace}"
 export USER_HOME="${USER_HOME:-$HOME/}"

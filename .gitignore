@@ -1,7 +1,16 @@
-target
-eclipse-installer
+*.class
 
-# Devenv
-.devenv*
-devenv.local.nix
-
+# Package Files #
+# *.jar
+*.war
+*.ear
+.polyglot.*
+.DS_Store
+rebel.xml
+bin/
+target/
+jetty.log
+workspace/
+profile.tmp
+bundles/ch.elexis.core.data/rsc/version.properties
+jre.bundles/downloaded/

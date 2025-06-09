@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     devenv.url = "github:cachix/devenv";
   };
 
@@ -27,7 +27,7 @@
             elexis-ide = pkgs.callPackage ./elexis-ide {};
             rcptt = pkgs.callPackage ./rcptt {};
             elexis-3_9 = pkgs.callPackage ./elexis-3.9 {};
-          });
+            });
       devShells = forAllSystems
         (system:
           let
