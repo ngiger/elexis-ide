@@ -30,7 +30,7 @@ was split into the two files [products.setup](./blob/main/elexis/products.setup)
 * call `./setup_elexis.sh`. The first time it takes some time to download,
   the second time it is quite fast (approx. 30 seconds in my case).
 * This will build an Eclipse ID
-  At the end it will say something like `run it via: /opt/ide/elexis-2022-12/eclipse/eclipse -data /opt/workspaces/elexis-2022-12 -clean`
+  At the end it will say something like `run it via: /opt/ide/elexis-2025-03/eclipse/eclipse -data /opt/workspaces/elexis-2025-03 -clean`
 * call this script
 * Select menu File..Import, select Oomph..Project from Catalog, then press Next.
   Select the projects under **Elexis Projekte** you want to install.
@@ -38,7 +38,7 @@ was split into the two files [products.setup](./blob/main/elexis/products.setup)
 * Nota bene: The values for oomph are stored under `~/.eclipse/org.eclipse.oomph.setup/setups/user.setup`
 
 Tested under Debian bullseye and NixOS 
-* The generate eclipse `/opt/ide/elexis-2025-03/eclipse` is small (32M), as most code is stored under `$HOME/.eclipse`
+* The generate eclipse `/opt/ide/elexis-2025-03/eclipse` is small (32M), as most code is stored under `$HOME/.eclipse` (over 500 MB)
 
 # NixOS: added flakes for RCPTT and Elexis-IDE
 24.11
@@ -52,3 +52,7 @@ or from a git clone
 * `nix profile install .#elexis-ide --impure`
 * `nix profile install .#rcptt --impure`
 
+
+org.eclipse.oomph.workingsets.feature.group
+org.eclipse.oomph.targlets.feature.group
+org.eclipse.oomph.version.feature.group

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:ProductCatalog
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    xmlns:workbench_1.0="http://www.eclipse.org/oomph/setup/workbench/1.0"
+    name="custom.products"
+    label="Features for Elexis-IDE">
+  <setupTask
+      xsi:type="setup:InstallationTask"
+      id="installation"/>
+  <product
+      href="https://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/org.eclipse.products.setup#//@products[name='epp.package.rcp']" />
+  <product name="ide4elexis"
+      label="Eclipse IDE for Elexis Developers">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/BrandingInfo">
+      <detail
+          key="imageURI">
+        <value>https://www.eclipse.org/downloads/images/rcp.png</value>
+      </detail>
+      <detail
+          key="notificationTooltip">
+        <value>Custom Eclipse IDE for RCP Developers</value>
+      </detail>
+    </annotation>
+    <version
+        name="latest"
+        label="Latest Custom"
+        requiredJavaVersion="21">
+      <annotation
+          source="http://www.eclipse.org/oomph/setup/BrandingInfo">
+        <detail
+            key="siteURI">
+          <value>https://www.eclipse.org/downloads/packages/release/2025-03/r/eclipse-ide-rcp-and-rap-developers</value>
+        </detail>
+        <detail
+            key="shortcut">
+          <value>Eclipse IDE 2025-03 for Elexis Developers with all needed features</value>
+        </detail>
+      </annotation>
+	  <setupTask
+          xsi:type="setup.p2:P2Task"
+          label="Elexis Eclipse IDE for Developers">
+        <requirement
+            name="epp.package.rcp"
+            versionRange="0.0.0"
+            excludedTriggers="MANUAL STARTUP"
+            filter="(|(&amp;(osgi.arch=aarch64)(osgi.os=linux)(osgi.ws=gtk))(&amp;(osgi.arch=aarch64)(osgi.os=macosx)(osgi.ws=cocoa))(&amp;(osgi.arch=x86_64)(osgi.os=linux)(osgi.ws=gtk))(&amp;(osgi.arch=x86_64)(osgi.os=macosx)(osgi.ws=cocoa))(&amp;(osgi.arch=x86_64)(osgi.os=win32)(osgi.ws=win32)))"/>
+        <!--requirement
+		  name="epp.package.standard" /-->
+		<!-- I would like to install the standard oomph 
+		org.eclipse.oomph.projectconfig.feature.group
+		org.eclipse.oomph.preferences.feature.group
+		-->
+        <requirement
+		  name="org.eclipse.oomph.setup.sdk.feature.group" />
+        <requirement
+		  name="org.eclipse.oomph.projectconfig.feature.group" />
+        <requirement
+		  name="org.eclipse.oomph.preferences.feature.group" />
+		
+        <requirement
+            name="org.eclipse.platform.feature.group"
+            versionRange="0.0.0"/>
+        <requirement
+            name="org.eclipse.rcp.feature.group"
+            versionRange="0.0.0"/>
+	<requirement
+	  name="org.eclipse.egit.feature.group"/>
+	<requirement
+	  name="org.eclipse.rcptt.platform.feature.group"/>
+    <repository
+            url="https://download.eclipse.org/rcptt/nightly/2.6.0/latest/repository/"/>
+    <!-- https://download.eclipse.org/rcptt/release/2.5.5/repository/ -->
+	<requirement
+	  name="org.brainwy.liclipsetext.feature.feature.group"/>
+	<requirement
+	  name="org.brainwy.liclipsetext.feature.source.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.github.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.cbi.targetplatform.feature.feature.group"/>
+    <requirement
+      name="com.essiembre.eclipse.rbe.feature.group"/>
+    <requirement
+        name="org.eclipse.m2e.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.rcp.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.wikitext_feature.feature.group"/>
+    <requirement
+        name="net.jeeeyul.pdetools.feature.feature.group"
+        filter=""/>
+    <requirement
+        name="at.medbits.tools.launchtopom.feature.feature.group"/>
+    <repository
+            url="https://raw.githubusercontent.com/essiembre/eclipse-rbe/master/eclipse-rbe-update-site/"/>
+    <repository
+            url="https://download.eclipse.org/technology/epp/packages/2025-03"/>
+    <repository
+	  url="https://download.eclipse.org/technology/m2e/releases/2.1.2/"/> 
+    <repository 
+        url="https://download.eclipse.org/cbi/updates/tpd/nightly/latest/"/>
+    <repository
+        url="https://raw.githubusercontent.com/essiembre/eclipse-rbe/master/eclipse-rbe-update-site/"/>
+    <repository
+        url="https://eclipse.jeeeyul.net/update/"/>
+	<repository
+	  url="https://download.eclipse.org/windowbuilder/1.11.0/" />
+    <repository
+        url="https://download.medelexis.ch/public/at.medbits.tools.launchtopom/"/>
+    <requirement
+        name="org.eclipse.cbi.targetplatform.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.m2e.feature.feature.group"/>
+    <requirement
+        name="com.essiembre.eclipse.rbe.feature.group"/>
+    <requirement
+        name="org.eclipse.wb.rcp.feature.feature.group"/>
+    <requirement
+        name="net.jeeeyul.pdetools.feature.feature.group"
+        filter=""/>
+    <requirement
+        name="com.essiembre.eclipse.rbe.feature.group"/>
+    <requirement
+        name="at.medbits.tools.launchtopom.feature.feature.group"/>
+    <repository
+        url="https://raw.githubusercontent.com/essiembre/eclipse-rbe/master/eclipse-rbe-update-site/"/>
+    <repository
+        url="https://download.eclipse.org/technology/m2e/releases/latest/"/>
+    <repository
+        url="https://download.eclipse.org/cbi/updates/tpd/nightly/latest/"/>
+    <repository
+        url="https://eclipse.jeeeyul.net/update/"/>
+    <repository
+        url="https://download.medelexis.ch/public/at.medbits.tools.launchtopom/"/>
+    <repository
+        url="https://raw.githubusercontent.com/essiembre/eclipse-rbe/master/eclipse-rbe-update-site/"/>
+	<repository
+	  url="https://www.liclipse.com/text/updates/" />
+		<!-- for unknown reasons this MUST be the LAST one -->
+        <repository
+            url="https://download.eclipse.org/releases/2025-03">
+         <annotation
+             source="http://www.eclipse.org/oomph/setup/ReleaseTrain"/>
+        </repository>
+      </setupTask>
+    </version>
+    <description>The essential tools for any Java developer, including a Java IDE, a Git client, XML Editor, Maven and Gradle integration</description>
+  </product>
+</setup:ProductCatalog>

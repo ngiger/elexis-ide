@@ -15,7 +15,7 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 
 # Adapt the following variables to your needs
 # Each of them can be overridden by the environment variable of the same name
-export INST_ROOT="${INST_ROOT:-/opt/ide/elexis-2025-05}"
+export INST_ROOT="${INST_ROOT:-/opt/ide/elexis-2025-03}"
 export GIT_ROOT="${GIT_ROOT:-$INST_ROOT/git}"
 export WORKSPACE="${WORKSPACE:-$INST_ROOT/workspace}"
 export USER_HOME="${USER_HOME:-$HOME/}"
@@ -63,9 +63,9 @@ $ELEXIS_INSTALLER -nosplash  -shared="$INST_ROOT/p2_shared"  -application org.ec
   -Duser.home="$USER_HOME" \
   -Doomph.setup.offline=false \
   -Dgit.container.root="$GIT_ROOT" \
-  -Doomph.installer.verbose=true 2>&1 | tee "$0`date '+%Y-%m-%d-%H-%M'`.log"
+  -Doomph.installer.verbose=true 2>&1 | tee "install-`date '+%Y-%m-%d-%H-%M'`.log"
 IDE=$(find "$INST_ROOT" -type f -name eclipse)
 echo "SETUPS were in $SETUPS IDE is $IDE"
-echo "run it via: $IDE -data $WORKSPACE -clean | tee --append $0.log"
-"$IDE" -data "$WORKSPACE" -clean
+echo "run it via: $IDE -data $WORKSPACE -clean"
+"$IDE" -data "$WORKSPACE" -clean &
 exit 0
